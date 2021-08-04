@@ -32,6 +32,8 @@
         <item>@string/touchscreen_gesture_action_volume_up</item>
         <item>@string/touchscreen_gesture_action_ambient_display</item>
         <item>@string/touchscreen_gesture_action_wake_device</item>
+        <item>@string/touchscreen_gesture_action_google_maps</item>
+        <item>@string/touchscreen_gesture_action_google_search</item>
     </string-array>
     <string-array name="touchscreen_gesture_action_values">
         <item>0</item>
@@ -48,6 +50,8 @@
         <item>11</item>
         <item>12</item>
         <item>13</item>
+        <item>14</item>
+        <item>15</item>
     </string-array>
 
 </resources>

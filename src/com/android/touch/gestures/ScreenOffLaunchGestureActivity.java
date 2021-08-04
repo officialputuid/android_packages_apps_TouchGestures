@@ -16,12 +16,12 @@ public class ScreenOffLaunchGestureActivity extends CollapsingToolbarBaseActivit
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         int action = 0;
-        try{
+        try {
             action = getIntent().getExtras().getInt(ACTION_KEY);
-        }catch(Exception ignored){
+        } catch(Exception ignored) {
         }
         final Intent intent = ActionUtils.getIntentByAction(this, action);
-        if (intent == null){
+        if (intent == null) {
             finish();
         }
         new Handler().post(() -> {

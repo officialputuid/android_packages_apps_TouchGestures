@@ -2,6 +2,7 @@ package com.android.touch.gestures;
 
 import android.app.KeyguardManager;
 import android.content.Context;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -40,27 +41,47 @@ public class ActionUtils {
                 new Intent(Intent.ACTION_VIEW, Uri.parse("sms:")));
     }
 
-    public static Intent getIntentByAction(Context context, int action){
+    private static Intent getGoogleMapsIntent(Context context) {
+        Intent intent = new Intent();
+        ComponentName cn=new ComponentName("com.google.android.apps.maps",
+                "com.google.android.maps.MapsActivity");
+        intent.setComponent(cn);
+        return intent;
+    }
+
+    private static Intent getGoogleSearchIntent(Context context) {
+        Intent intent = new Intent();
+        ComponentName cn=new ComponentName("com.google.android.googlequicksearchbox",
+                "com.google.android.googlequicksearchbox.SearchActivity");
+        intent.setComponent(cn);
+        return intent;
+    }
+
+    public static Intent getIntentByAction(Context context, int action) {
         Intent intent = null;
-        if (action == TouchscreenGestureConstants.ACTION_BROWSER){
+        if (action == TouchscreenGestureConstants.ACTION_BROWSER) {
             intent = getBrowserIntent(context);
-        }else if (action == TouchscreenGestureConstants.ACTION_DIALER){
+        } else if (action == TouchscreenGestureConstants.ACTION_DIALER) {
             intent = getDialerIntent();
-        }else if (action == TouchscreenGestureConstants.ACTION_EMAIL){
+        } else if (action == TouchscreenGestureConstants.ACTION_EMAIL) {
             intent = getEmailIntent(context);
-        }else if (action == TouchscreenGestureConstants.ACTION_MESSAGES){
+        } else if (action == TouchscreenGestureConstants.ACTION_MESSAGES) {
             intent = getMessagesIntent(context);
+        } else if (action == TouchscreenGestureConstants.ACTION_GOOGLE_MAPS) {
+            intent = getGoogleMapsIntent(context);
+        } else if (action == TouchscreenGestureConstants.ACTION_GOOGLE_SEARCH) {
+            intent = getGoogleSearchIntent(context);
         }
         return intent;
     }
 
     public static void triggerAction(Context context, int action) {
         Intent intent = getIntentByAction(context, action);
-        if (intent == null){
+        if (intent == null) {
             return;
         }
         KeyguardManager km = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
-        if (km.isKeyguardLocked()){
+        if (km.isKeyguardLocked()) {
             intent = new Intent();
             intent.setClassName("com.android.touch.gestures", "com.android.touch.gestures.ScreenOffLaunchGestureActivity");
             intent.putExtra(ScreenOffLaunchGestureActivity.ACTION_KEY, action);
@@ -69,7 +90,7 @@ public class ActionUtils {
     }
 
     public static void startActivitySafely(Context context, Intent intent) {
-        if (intent == null){
+        if (intent == null) {
             return;
         }
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
