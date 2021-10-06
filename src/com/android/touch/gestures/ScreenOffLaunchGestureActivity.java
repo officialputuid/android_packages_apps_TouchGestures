@@ -1,13 +1,15 @@
 package com.android.touch.gestures;
 
-import android.app.Activity;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-public class ScreenOffLaunchGestureActivity extends Activity {
+import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity;
+import com.android.settingslib.collapsingtoolbar.R;
+
+public class ScreenOffLaunchGestureActivity extends CollapsingToolbarBaseActivity {
 
     static final String ACTION_KEY = "action";
 

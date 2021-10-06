@@ -30,7 +30,7 @@
         <activity
             android:name=".TouchscreenGestureSettings"
             android:label="@string/touchscreen_gesture_settings_title"
-            android:theme="@style/AppTheme">
+            android:theme="@style/Theme.SubSettingsBase">
         </activity>
 
         <activity
