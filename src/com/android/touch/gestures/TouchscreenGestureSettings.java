@@ -50,7 +50,7 @@ public class TouchscreenGestureSettings extends CollapsingToolbarBaseActivity
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
-                    .replace(R.id.content_frame, getNewFragment())
+                    .replace(com.android.settingslib.collapsingtoolbar.R.id.content_frame, getNewFragment())
                     .commit();
         }
     }
@@ -65,7 +65,7 @@ public class TouchscreenGestureSettings extends CollapsingToolbarBaseActivity
         Fragment instantiate = Fragment.instantiate(this, preference.getFragment(),
             preference.getExtras());
         getFragmentManager().beginTransaction().replace(
-                R.id.content_frame, instantiate).addToBackStack(preference.getKey()).commit();
+                com.android.settingslib.collapsingtoolbar.R.id.content_frame, instantiate).addToBackStack(preference.getKey()).commit();
 
         return true;
     }
